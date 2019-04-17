@@ -2,8 +2,9 @@
     "manifestVersion": 1,
     "id": "devops-github-extension",
     "name": "Github AzureDevOps Rest Api Integration",
-    "version": "0.1.0",
+    "version": "0.1.6",
     "publisher": "jikuma",
+    "public": true,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
@@ -32,5 +33,28 @@
                 "name": "githubrestapitask"
             }
         }
-    ]
+    ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        },
+        "license": {
+            "path": "license-terms.md"
+        }
+    },
+    "screenshots": [
+        {
+            "path": "screenshots/screen1.png"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/jikuma/AzureDevOpsGithubRestApi"
+    },
+    
+    "links": {
+        "repository": {
+            "uri": "https://github.com/jikuma/AzureDevOpsGithubRestApi"
+        }
+    }
 }
