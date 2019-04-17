@@ -25,15 +25,7 @@ if(ignoreSslErrors != null)
 var httpCallbackClient = new httpClient.HttpClient(tl.getVariable("AZURE_HTTP_USER_AGENT"), undefined, requestOptions);
 
 async function run() {
-    try {
-        const inputString: string = tl.getInput('samplestring', true);
-        if (inputString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-        console.log('Hello', inputString);
-        
-        
+    try {        
         // Get basic task inputs
         const githubEndpoint = tl.getInput("gitHubConnection", true);
         const githubEndpointToken = Utility.getGithubEndPointToken(githubEndpoint);
