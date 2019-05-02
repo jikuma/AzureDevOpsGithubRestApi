@@ -12,4 +12,7 @@ If you want to create an issue in case deployment failed, you need to provide th
 If you do not have milestone number, do not specify in Body json
 
 ![Release Definition](./screenshots/issue.PNG)
+
+In "Control Options" part of the task set "Run this task" as "Only when a previous task has failed."
+
 ![GitHub](./screenshots/issuegithub.PNG)
