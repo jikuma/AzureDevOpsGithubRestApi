@@ -1,6 +1,6 @@
 # Create an issue in case of deployment failed
 
-If you want to create an issue if the deployment fialed you need to provide the following inputs
+If you want to create an issue in case deployment failed, you need to provide the following inputs
 
 |              Inputs              |      Values                  |
 |----------------------------------|------------------------------|
