@@ -9,9 +9,15 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 2
+        "Patch": 3
     },
     "instanceNameFormat": "Github $(method)",
+    "outputVariables": [
+        {
+            "name": "Output",
+            "description": "Stores the output of rest api call"
+        }
+    ],
     "inputs": [
         {
             "name": "gitHubConnection",

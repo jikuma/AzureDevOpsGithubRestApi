@@ -44,7 +44,9 @@ async function run() {
          console.log('Status Code', response.message.statusCode, 'Status Message',response.message.statusMessage);
          var resbody = await response.readBody();
          if (resbody) {
-             console.log("Response: " + JSON.stringify(resbody));
+             var result = JSON.stringify(resbody);
+             console.log("Response: " + result);
+             tl.setVariable('Output', result);
          }
           
          let ignoreFailure: boolean = tl.getBoolInput("ignoreFailure");
