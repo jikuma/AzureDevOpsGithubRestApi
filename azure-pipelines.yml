@@ -7,19 +7,22 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: 'vs2017-win2016'
 
 steps:
 - script: 'npm i -g tfx-cli'
   displayName: 'Command Line Script'
 
-
-- task: NodeTool@0
+- task: Npm@1
   inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+    command: 'install'
+    workingDir: 'githubrestapitask'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- task: CmdLine@2
+  inputs:
+    script: 'tsc'
+    workingDirectory: 'githubrestapitask'
+
+- task: CmdLine@2
+  inputs:
+    script: 'tfx extension create --manifest-globs vss-extension.json'
