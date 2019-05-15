@@ -6,3 +6,5 @@ Task "Azure DevOps GitHub Rest Api Integration" enables user to make rest api ca
 
 # Examples
 [Create an issue](https://github.com/jikuma/AzureDevOpsGithubRestApi/blob/master/issue.md)
+[Sample pipeline to add a label for pull request] (https://github.com/jikuma/AzureDevOpsGithubRestApi/blob/master/azure-pipelines-pr.yml) 
+[Sample to chain multiple github rest api call] (https://github.com/jikuma/AzureDevOpsGithubRestApi/blob/master/azure-pipelines-pr.yml)
