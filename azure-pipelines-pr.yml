@@ -53,10 +53,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: '# Write your powershell commands here.
-      
-      Write-Host "Hello World"
-      Write-Host $(powershellScript.OutputVar)
-      
+      Write-Host "$(powershellScript.OutputVar)"      
       # Use the environment variables input below to pass secret variables to this script.'
       
 - task: jikuma.devops-github-extension.custom-build-release-task.azuredevopsgithub@0
