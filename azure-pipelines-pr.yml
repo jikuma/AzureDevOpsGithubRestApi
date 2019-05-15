@@ -3,36 +3,51 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
+pr:
 - master
 
 pool:
   vmImage: 'vs2017-win2016'
 
 steps:
-- script: 'npm i -g tfx-cli'
-  displayName: 'Command Line Script'
-
-- task: Npm@1
+- task: jikuma.devops-github-extension.custom-build-release-task.azuredevopsgithub@0
+  displayName: 'Github GET'
   inputs:
-    command: 'install'
-    workingDir: 'githubrestapitask'
+    gitHubConnection: 'jikuma-Github'
+    method: GET
+    githubrestapiurl: 'https://api.github.com/repos/$(BUILD.REPOSITORY.ID)/issues/$(system.pullRequest.pullRequestNumber)'
 
-- task: CmdLine@2
-  inputs:
-    script: 'tsc'
-    workingDirectory: 'githubrestapitask'
+- powershell: |
+   # Create a 'New' label
+   $unitTestMissingLabel = New-Object -TypeName psobject
+   $unitTestMissingLabel | Add-Member -MemberType NoteProperty -Name name -Value 'New'
+   
+   #Convert String Output to Json
+   #Step 1: Remove quote around the string
+   $issue = '$(githubget.Output)'.Substring(1, '$(githubget.Output)'.Length-2)
+   
+   #Step 2 : Remove escape sequence from string
+   $issueJsonString = $issue -replace '\\', ''
+   
+   #Convert to json
+   $issueJson= ($issueJsonString | ConvertFrom-Json)
+   
+   #Start creating patch json by selecting label property
+   $issuePatchJson = $issueJson | Select-Object -Property labels
+   $issuePatchJson.labels += $unitTestMissingLabel
+   
+   #Convert Patch obj to json
+   $issuePatchString = ($issuePatchJson  | ConvertTo-Json -Compress)
+   
+   # Create a VSTS variable OutputVar to be used in another step
+   Write-Host '##vso[task.setvariable variable=OutputVar]'$issuePatchString
+   
+  displayName: 'PowerShell Script'
 
-- task: CmdLine@2
+- task: jikuma.devops-github-extension.custom-build-release-task.azuredevopsgithub@0
+  displayName: 'Github PATCH'
   inputs:
-    script: 'tfx extension create --manifest-globs vss-extension.json'
-
-- task: GitHubRelease@0
-  displayName: 'GitHub release (create)'
-  inputs:
-    gitHubConnection: 'jikuma-extension'
-    tagSource: manual
-    tag: '$(Build.BuildId)'
-    title: 'Published from $(Build.BuildId)'
-    assets: '$(Build.Repository.LocalPath)/jikuma.devops-github-extension*'
-    isPreRelease: true
+    gitHubConnection: 'jikuma-Github'
+    method: PATCH
+    body: '$(OutputVar)'
+    githubrestapiurl: 'https://api.github.com/repos/$(BUILD.REPOSITORY.ID)/issues/$(system.pullRequest.pullRequestNumber)'
