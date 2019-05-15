@@ -30,7 +30,7 @@ steps:
 - task: GitHubRelease@0
   displayName: 'GitHub release (create)'
   inputs:
-    gitHubConnection: 'jikuma'
+    gitHubConnection: 'jikuma-extension'
     tagSource: manual
     tag: '$(Build.BuildId)'
     title: 'Published from $(Build.BuildId)'
