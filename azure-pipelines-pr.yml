@@ -1,0 +1,38 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+steps:
+- script: 'npm i -g tfx-cli'
+  displayName: 'Command Line Script'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: 'githubrestapitask'
+
+- task: CmdLine@2
+  inputs:
+    script: 'tsc'
+    workingDirectory: 'githubrestapitask'
+
+- task: CmdLine@2
+  inputs:
+    script: 'tfx extension create --manifest-globs vss-extension.json'
+
+- task: GitHubRelease@0
+  displayName: 'GitHub release (create)'
+  inputs:
+    gitHubConnection: 'jikuma-extension'
+    tagSource: manual
+    tag: '$(Build.BuildId)'
+    title: 'Published from $(Build.BuildId)'
+    assets: '$(Build.Repository.LocalPath)/jikuma.devops-github-extension*'
+    isPreRelease: true
