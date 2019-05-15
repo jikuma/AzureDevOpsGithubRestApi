@@ -31,8 +31,7 @@ steps:
    
    #Step 2 : Remove escape sequence from string
    $issueJsonString = $issue -replace '\\', ''
-   
-   $issueJsonString
+  
    #Convert to json
    $issueJson= ($issueJsonString | ConvertFrom-Json)
    
@@ -48,14 +47,6 @@ steps:
    
   displayName: 'PowerShell Script'
   name: 'powershellScript'
-
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: '# Write your powershell commands here.
-      Write-Host "$(powershellScript.OutputVar)"  
-      Write-Host $(powershellScript.OutputVar)    
-      # Use the environment variables input below to pass secret variables to this script.'
       
 - task: jikuma.devops-github-extension.custom-build-release-task.azuredevopsgithub@0
   displayName: 'Github PATCH'
