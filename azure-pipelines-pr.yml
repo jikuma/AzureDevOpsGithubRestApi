@@ -24,9 +24,9 @@ steps:
    $unitTestMissingLabel = New-Object -TypeName psobject
    $unitTestMissingLabel | Add-Member -MemberType NoteProperty -Name name -Value 'New'
    
-   #Convert String Output to Json
+   #Convert String Output (Variabel set by previos github task) to Json
    #Step 1: Remove quote around the string
-   $issue = '$(githubget.Output)'.Substring(1, '$(githubget.Output)'.Length-2)
+   $issue = '$(Output)'.Substring(1, '$(Output)'.Length-2)
    
    #Step 2 : Remove escape sequence from string
    $issueJsonString = $issue -replace '\\', ''
