@@ -31,6 +31,7 @@ steps:
    #Step 2 : Remove escape sequence from string
    $issueJsonString = $issue -replace '\\', ''
    
+   $issueJsonString
    #Convert to json
    $issueJson= ($issueJsonString | ConvertFrom-Json)
    
