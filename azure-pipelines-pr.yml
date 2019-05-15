@@ -47,7 +47,7 @@ steps:
    Write-Host '##vso[task.setvariable variable=OutputVar]'$issuePatchString
    
   displayName: 'PowerShell Script'
-  name: 'powershell'
+  name: 'powershellScript'
 
 - task: PowerShell@2
   inputs:
@@ -55,7 +55,7 @@ steps:
     script: '# Write your powershell commands here.
       
       Write-Host "Hello World"
-      Write-Host $(powershell.OutputVar)
+      Write-Host $(powershellScript.OutputVar)
       
       # Use the environment variables input below to pass secret variables to this script.'
       
@@ -64,5 +64,5 @@ steps:
   inputs:
     gitHubConnection: 'jikuma-extension'
     method: PATCH
-    body: '$(powershell.OutputVar)'
+    body: '$(powershellScript.OutputVar)'
     githubrestapiurl: 'https://api.github.com/repos/$(BUILD.REPOSITORY.ID)/issues/$(system.pullRequest.pullRequestNumber)'
