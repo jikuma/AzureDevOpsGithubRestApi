@@ -44,7 +44,7 @@ steps:
    $issuePatchString = ($issuePatchJson  | ConvertTo-Json -Compress)
    
    # Create a VSTS variable OutputVar to be used in another step
-   Write-Host '##vso[task.setvariable variable=OutputVar]'$issuePatchString
+   Write-Host '##vso[task.setvariable variable=OutputVar;isOutput=true]'$issuePatchString
    
   displayName: 'PowerShell Script'
   name: 'powershellScript'
@@ -53,7 +53,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: '# Write your powershell commands here.
-      Write-Host "$(powershellScript.OutputVar)"      
+      Write-Host "$(powershellScript.OutputVar)"  
+      Write-Host $(powershellScript.OutputVar)    
       # Use the environment variables input below to pass secret variables to this script.'
       
 - task: jikuma.devops-github-extension.custom-build-release-task.azuredevopsgithub@0
