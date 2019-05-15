@@ -26,3 +26,13 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'tfx extension create --manifest-globs vss-extension.json'
+
+- task: GitHubRelease@0
+  displayName: 'GitHub release (create)'
+  inputs:
+    gitHubConnection: 'jikuma'
+    tagSource: manual
+    tag: '$(Build.BuildId)'
+    title: 'Published from $(Build.BuildId)'
+    assets: '$(Build.Repository.LocalPath)/jikuma.devops-github-extension*'
+    isPreRelease: true
