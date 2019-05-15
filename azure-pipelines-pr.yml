@@ -13,7 +13,7 @@ steps:
 - task: jikuma.devops-github-extension.custom-build-release-task.azuredevopsgithub@0
   displayName: 'Github GET'
   inputs:
-    gitHubConnection: 'jikuma-Github'
+    gitHubConnection: 'jikuma-extension'
     method: GET
     githubrestapiurl: 'https://api.github.com/repos/$(BUILD.REPOSITORY.ID)/issues/$(system.pullRequest.pullRequestNumber)'
 
@@ -47,7 +47,7 @@ steps:
 - task: jikuma.devops-github-extension.custom-build-release-task.azuredevopsgithub@0
   displayName: 'Github PATCH'
   inputs:
-    gitHubConnection: 'jikuma-Github'
+    gitHubConnection: 'jikuma-extension'
     method: PATCH
     body: '$(OutputVar)'
     githubrestapiurl: 'https://api.github.com/repos/$(BUILD.REPOSITORY.ID)/issues/$(system.pullRequest.pullRequestNumber)'
