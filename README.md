@@ -1,4 +1,4 @@
-# AzureDevOpsGithubRestApi
+# AzureDevOpsGithubRestApi-pr
 
 Azure devops task link https://marketplace.visualstudio.com/items?itemName=jikuma.devops-github-extension
 
