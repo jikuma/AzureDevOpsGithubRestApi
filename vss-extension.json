@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "devops-github-extension",
     "name": "Github AzureDevOps Rest Api Integration",
-    "version": "0.1.14",
+    "version": "0.1.15",
     "publisher": "jikuma",
     "public": true,
     "targets": [
@@ -10,7 +10,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],    
-    "description": "Github AzureDevOps Rest Api Integration. This task enable you to call github rest api using azure devops github endpoint. This enables you to integrate you CI/CD pipeline better with github.",
+    "description": "Github AzureDevOps Rest Api Integration. This task enable you to call github rest api using azure devops github endpoint. This enables you to integrate your CI/CD pipeline better with github.",
     "categories": [
         "Azure Pipelines"
     ],
