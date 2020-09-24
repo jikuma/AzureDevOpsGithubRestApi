@@ -16,7 +16,7 @@ steps:
   displayName: 'Github GET'
   name: 'githubget'
   inputs:
-    gitHubConnection: 'jikuma-oauth'
+    gitHubConnection: 'jikuma-pattoken'
     method: GET
     githubrestapiurl: 'https://api.github.com/repos/$(BUILD.REPOSITORY.ID)/issues/$(system.pullRequest.pullRequestNumber)'
 
