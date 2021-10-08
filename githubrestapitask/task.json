@@ -73,6 +73,22 @@
             "defaultValue": "false",
             "required": false,
             "helpMarkDown": "Mark task as success even if api call fails."
+        },
+        {
+            "name": "valuesToExtract",
+            "type": "multiLine",
+            "label": "Extract Values",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "A multiline list of JSON paths to extract into separate job variables. The JSON root is denoted by $. For array element access, use `$.list.0.name`. \nFor example, if you specify `$.name` here and `FOO_` for prefix, there will be a job variable called `FOO_name` with the value taken from `name` property of the response object. Nonexistent or bad paths are reported as warnings."
+        },
+        {
+            "name": "valuePrefix",
+            "type": "string",
+            "label": "Variable Name Prefix",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkdown": "This line, if provided, will be prepended to job variable name when extracting JSON values. This is for disambiguating if you have several invokations of the same or similar API in the definition."
         }
     ],
     "execution": {
