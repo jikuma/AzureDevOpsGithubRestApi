@@ -10,18 +10,19 @@ following inputs:
 |              Inputs              |      Values                  |
 |----------------------------------|------------------------------|
 | GitHub connection (OAuth or PAT) | Select a Github endpoint     |
-| Method                           | Select GERT                  |
+| Method                           | Select GET                  |
 | Extract Values                   | $.tag_name                   |
 | Variable Name Prefix             | RELEASE_
-|URL and parameters| https://api.github.com/repos/RepoName/releases/latest  e.g: https://api.github.com/repos/jikuma/sampledevspacesapp/releasees/latest|
+|URL and parameters| https://api.github.com/repos/RepoName/releases/latest  e.g: https://api.github.com/repos/jikuma/sampledevspacesapp/releases/latest|
 
-Once the task executes, there will be a variable in your job, called RELEASE_tag_name with the value that corresponds to the GitHub tag.
+Once the task executes, there will be a variable in your job, called `RELEASE_tag_name` with the value that corresponds to the GitHub tag.
 
-You can specify more than one line under Extract Values. Each line would
+You can specify several lines under Extract Values. Each line would
 generate a job variable with the respective value.
 
-The format of the value specification goes something like this:
-`$.objectMember.arrayMember.0.property`. The dot notation is used both for
+The format of the value specification goes like this:
+`$.objectMember.arrayMember.0.property`. The dollar sign denotes the
+root value of the REST API result JSON. The dot notation is used both for
 object field access and for array element access.
 
 For arrays, negative indices are supported. If the index is negative,
