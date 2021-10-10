@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "devops-github-extension",
     "name": "Github AzureDevOps Rest Api Integration",
-    "version": "0.1.17",
+    "version": "0.2.1",
     "publisher": "jikuma",
     "public": true,
     "targets": [
